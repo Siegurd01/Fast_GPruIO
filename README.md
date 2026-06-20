@@ -18,6 +18,39 @@ sudo ./userspace/build/fast_gpruio_cmd pulse GPIO2.1 100
 Change `800`, `25`, or `100` to change the duration. Pin names may use board
 notation (`P2.17`, `P1.30`) or raw GPIO notation (`GPIO65`, `GPIO2.1`).
 
+## Quick start with the prebuilt firmware
+
+Run these commands directly on PocketBeagle:
+
+```bash
+sudo apt update
+sudo apt install git curl
+
+git clone https://github.com/Siegurd01/Fast_GPruIO.git
+cd Fast_GPruIO
+
+mkdir -p build
+curl -fL \
+  https://github.com/Siegurd01/Fast_GPruIO/releases/latest/download/fast_gpruio_pru1_fw.out \
+  -o build/fast_gpruio_pru1_fw.out
+curl -fL \
+  https://github.com/Siegurd01/Fast_GPruIO/releases/latest/download/fast_gpruio_cmd \
+  -o build/fast_gpruio_cmd
+
+chmod +x scripts/*.sh build/fast_gpruio_cmd
+sudo ./scripts/load_pru1_fast_gpruio.sh build/fast_gpruio_pru1_fw.out
+sudo ./build/fast_gpruio_cmd pulse P2.17 800 --idle 0 --active 1
+```
+
+The last command drives `P2.17` high for 800 microseconds and then returns it
+low. Change `P2.17` to another GPIO-capable pin name and change `800` to the
+required duration in microseconds. For an active-low pulse, use:
+
+```bash
+sudo ./build/fast_gpruio_cmd pulse P2.17 800 --idle 1 --active 0
+```
+
+
 ## Download on Windows
 
 Install [Git for Windows](https://git-scm.com/download/win), open Command
