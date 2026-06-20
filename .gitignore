@@ -1,0 +1,10 @@
+.tools/
+.cache/
+build/
+userspace/build/
+*.obj
+*.map
+*.tmp
+*~
+.DS_Store
+Thumbs.db
