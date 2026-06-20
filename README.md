@@ -101,7 +101,7 @@ Firmware builds are pinned to **TI PRU Code Generation Tools 2.3.3**. The
 install scripts download the unmodified installer from TI's official software
 server:
 
-- [TI PRU CGT 2.3.3 download directory]([https://software-dl.ti.com/codegen/esd/cgt_public_sw/PRU/2.3.3/](https://www.ti.com/tool/download/PRU-CGT/2.3.3))
+- [TI PRU CGT 2.3.3 download](https://www.ti.com/tool/download/PRU-CGT/2.3.3])
 
 Running a TI installer is subject to the license displayed/provided by Texas
 Instruments. The toolchain is installed locally under `.tools/` and is ignored
