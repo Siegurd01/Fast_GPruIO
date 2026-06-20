@@ -7,6 +7,16 @@ applications such as RS485 DIR/DE control. It is not limited to the small set
 of pins connected directly to PRU `R30`: it can drive any PocketBeagle header
 pin that the AM335x exposes as a GPIO.
 
+## Why Fast_GPruIO?
+
+Controlling GPIO directly from Linux userspace does not provide deterministic timing. Process scheduling, system calls, filesystem interfaces, and kernel activity can introduce unpredictable delays.
+
+This becomes critical in timing-sensitive applications such as RS485 direction control. After transmitting the final byte, the DIR/DE pin must return to the receive state as quickly and predictably as possible. A delayed transition may corrupt or truncate an incoming response.
+
+Fast_GPruIO moves pulse timing to the PRU, providing fast and predictable GPIO control while allowing the Linux application to remain non-blocking.
+
+https://github.com/user-attachments/assets/accc500e-cb64-40a7-869a-c573f52b7f97
+
 Pulse a pin by name; the last argument is the pulse duration in microseconds:
 
 ```bash
